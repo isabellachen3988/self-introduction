@@ -21,3 +21,7 @@ npm run dev
 ```
 
 Once the above is complete the server will be running on port 5002
+
+# Cannot find llama3 from ollama?
+
+ollama run llama3:latest in the console first

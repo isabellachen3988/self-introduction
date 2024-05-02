@@ -7,6 +7,11 @@ import { DocxLoader } from "langchain/document_loaders/fs/docx";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { Document } from "@langchain/core/documents";
 import { DocumentInterface } from "@langchain/core/documents";
+import { Ollama } from "@langchain/community/llms/ollama";
+import { FaissStore } from "@langchain/community/vectorstores/faiss"
+// import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
+import { VertexAI } from "@langchain/google-vertexai"
+import { GoogleVertexAIEmbeddings } from "@langchain/community/embeddings/googlevertexai";
 
 export default async (question = "", filePath = "") => {
   const fileExtension = filePath.split(".").pop();
@@ -26,16 +31,22 @@ export default async (question = "", filePath = "") => {
 
   const docs = await loader.load();
 
+  // const vectorStore = await FaissStore.from
   const vectorStore = await MemoryVectorStore.fromDocuments(
     docs,
-    new OpenAIEmbeddings()
+    new GoogleVertexAIEmbeddings()
   );
 
   const searchResponse = await vectorStore.similaritySearch(question, 1);
   const textRes = searchResponse
     .map((item: DocumentInterface<Record<string, any>>) => item?.pageContent)
     .join("\n");
-  const llm = new OpenAI({ modelName: "gpt-4" });
+  // const llm = new OpenAI({ modelName: "gpt-4" });
+  const llm = new Ollama({
+    model: "llama3:latest",
+  })
+  // const llm = new VertexAI({ temperature: 0.7 })
+  
   const chain = loadQAStuffChain(llm);
 
   const result = await chain.invoke({

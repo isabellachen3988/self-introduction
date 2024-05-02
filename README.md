@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PERSONAL CHATBOT
 
 ![alt text](image.png)
@@ -23,3 +24,6 @@ follow the read me
 ## Article
 
 [medium url](https://garygeorge84.medium.com/build-a-personal-ai-chatbot-with-node-langchain-typescript-react-7a71c4648ea4)
+=======
+# self-introduction
+>>>>>>> 538644527e635091d9122c4544a02be95d22d7ed
