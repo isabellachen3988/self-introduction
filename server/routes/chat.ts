@@ -12,6 +12,7 @@ export const inMemoryChat = async (req: Request, res: Response) => {
 		result = await textloader.LoadText(question, filePath)
 	} catch(error) {
 		result = error as string;
+		console.log(error)
 	}
 	
 	// const result = await TextLoader(question, filePath);

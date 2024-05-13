@@ -11,23 +11,23 @@ const callChatAPI = async (
 	history: any,
 	updateHistory: any
 ) => {
-const { text } = state;
+	const { text } = state;
 
-updateState({ ...state, loading: true });
+	updateState({ ...state, loading: true });
 
-const { data } = await axios({
-	method: "get",
-	url: `${process.env.REACT_APP_API_URL}v1/in-memory-ai-text`,
-	params: { question: text },
-});
+	const { data } = await axios({
+		method: "get",
+		url: `${process.env.REACT_APP_API_URL}v1/in-memory-ai-text`,
+		params: { question: text },
+	});
 
-const { question, answer } = data;
+	const { question, answer } = data;
 
-const updatedHistory = [...history, { question, answer }];
+	const updatedHistory = [...history, { question, answer }];
+	console.log(updatedHistory)
+	updateHistory(updatedHistory);
 
-updateHistory(updatedHistory);
-
-updateState({ ...state, loading: false, text: "" });
+	updateState({ ...state, loading: false, text: "" });
 };
 
 const avatar1 = `${process.env.REACT_APP_BASE_URL}avatar1.png`;
@@ -36,13 +36,13 @@ const avatar2 = `${process.env.REACT_APP_BASE_URL}avatar2.png`;
 const Item = ({ item, type }: { item: any; type: string }) => (
 	<Flex
 		style={{
-		alignSelf: type === "question" ? "flex-start" : "flex-end",
-		textAlign: type === "question" ? "left" : "right",
-		backgroundColor: type === "question" ? "white" : "#9999ff",
-		background: type === "question" ? "white" : "rgba(255,255,255,0.04)",
-		border: type === "question" ? "unset" : "1px solid rgba(255,255,255,0.6)",
-		borderBottomLeftRadius: type === "question" ? "0" : "20px",
-		borderBottomRightRadius: type === "question" ? "20px" : "0",
+			alignSelf: type === "question" ? "flex-start" : "flex-end",
+			textAlign: type === "question" ? "left" : "right",
+			backgroundColor: type === "question" ? "white" : "#9999ff",
+			background: type === "question" ? "white" : "rgba(255,255,255,0.04)",
+			border: type === "question" ? "unset" : "1px solid rgba(255,255,255,0.6)",
+			borderBottomLeftRadius: type === "question" ? "0" : "20px",
+			borderBottomRightRadius: type === "question" ? "20px" : "0",
 		}}
 		padding="15px 10px 15px 15px "
 		width="450px"
@@ -65,36 +65,36 @@ const Item = ({ item, type }: { item: any; type: string }) => (
 		)}
 
 		<Text
-		style={{
-			color: type === "question" ? "#444" : "white",
-		}}
-		minHeight="50px"
-		marginBottom="10px"
-		border="0px solid red"
-		height="max-content"
-		width="100%"
-		fontWeight="500"
-		fontSize="15px"
-		>
-		{type === "question" ? `${item?.question} ?` : item?.answer}
-		{type === "question" && (
-			<span style={{ fontSize: "11px", color: "grey" }}>
-			<br />
-			Romeo & Juliet
-			</span>
-		)}
+			style={{
+				color: type === "question" ? "#444" : "white",
+			}}
+			minHeight="50px"
+			marginBottom="10px"
+			border="0px solid red"
+			height="max-content"
+			width="100%"
+			fontWeight="500"
+			fontSize="15px"
+			>
+			{type === "question" ? `${item?.question} ?` : item?.answer}
+			{type === "question" && (
+				<span style={{ fontSize: "11px", color: "grey" }}>
+				<br />
+				Romeo & Juliet
+				</span>
+			)}
 		</Text>
 
 		{type === "answer" && (
-		<Box
-			backgroundImage={`url(${avatar1})`}
-			borderRadius={"100%"}
-			p={"2px"}
-			ml="10px"
-			w="40px"
-			h="40px"
-			backgroundSize={"cover"}
-		/>
+			<Box
+				backgroundImage={`url(${avatar1})`}
+				borderRadius={"100%"}
+				p={"2px"}
+				ml="10px"
+				w="40px"
+				h="40px"
+				backgroundSize={"cover"}
+			/>
 		)}
 	</Flex>
 );
@@ -103,9 +103,9 @@ const ChatItem = ({ item, i }: { item: any; i: any }) => (
 	<Flex
 		key={`chat-${i}`}
 		style={{
-		flexDirection: "column",
-		marginBottom: "0px",
-		marginTop: i === 0 ? "0" : "0px",
+			flexDirection: "column",
+			marginBottom: "0px",
+			marginTop: i === 0 ? "0" : "0px",
 		}}
 	>
 		<Item item={item} type="question" />
@@ -138,7 +138,7 @@ export const ChatInterface = ({
 			flexDirection="column"
 			justifyContent="space-between"
 			color="white"
-			>
+		>
 			<Box marginBottom="10px" width="100%" ml="10px" position={"relative"}>
 				<Text
 					pos="absolute"
@@ -157,6 +157,7 @@ export const ChatInterface = ({
 					Personal Chatbot Example
 				</Text>
 			</Box>
+
 			{state.loading && (
 				<Flex
 					position="absolute"
@@ -172,6 +173,7 @@ export const ChatInterface = ({
 					<Spinner size="xl" />
 				</Flex>
 			)}
+
 			<Flex
 				border="0px solid red"
 				padding="10px 25px"
@@ -187,21 +189,21 @@ export const ChatInterface = ({
 				))}
 
 				{!history?.length && (
-				<>
-					<Text
-					color="#DDD"
-					fontWeight="500"
-					marginTop="150px"
-					width="100%"
-					fontSize="20px"
-					textAlign="center"
-					>
-					Ask some questions about Romeo & Juliet 💬 🚀
-					</Text>
-					<Text w="100%" textAlign={"center"} mt="10px">
-					* you could link this to several documents and query for data.
-					</Text>
-				</>
+					<>
+						<Text
+						color="#DDD"
+						fontWeight="500"
+						marginTop="150px"
+						width="100%"
+						fontSize="20px"
+						textAlign="center"
+						>
+							Ask some questions about Romeo & Juliet 💬 🚀
+						</Text>
+						<Text w="100%" textAlign={"center"} mt="10px">
+							* you could link this to several documents and query for data.
+						</Text>
+					</>
 				)}
 				<Box ref={bottomRef} id="scrollToDiv" style={{ height: 1 }} />
 			</Flex>
@@ -236,6 +238,7 @@ export const ChatInterface = ({
 					}}
 					onChange={(e) => updateState({ ...state, text: e.target.value })}
 				/>
+
 				<Flex
 					style={{
 						color: state?.text === "" ? "lightgrey" : "#333366",
