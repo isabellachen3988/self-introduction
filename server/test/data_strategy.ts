@@ -18,6 +18,7 @@ describe('FileDataObtainingStrategy', () => {
             const vectorStore = await strategy.obtainVectorStore(filePath)
 
             expect(vectorStore).to.be.instanceOf(MemoryVectorStore);
+            expect(loaderStub.calledOnceWithExactly()).to.be.true;
         })
     })
 })
