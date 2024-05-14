@@ -29,9 +29,12 @@ export class FileDataObtainingStrategy implements DataObtainingStrategy {
         } else if (fileExtension === "txt") {
             loader = new TextLoader(filePath);
         } else if (fileExtension === "pdf") {
-            loader = new PDFLoader(filePath, {
-            splitPages: false,
-            });
+            loader = new PDFLoader(
+                filePath,
+                {
+                    splitPages: false,
+                }
+            );
         } else {
             throw new Error ("unsupported file type");
         }
