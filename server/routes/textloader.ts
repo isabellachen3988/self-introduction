@@ -4,6 +4,8 @@ import { DataObtainingStrategy } from "./data_strategy";
 import { Document } from "@langchain/core/documents";
 import { DocumentInterface } from "@langchain/core/documents";
 import { Ollama } from "@langchain/community/llms/ollama";
+import { GoogleVertexAIEmbeddings } from "@langchain/community/embeddings/googlevertexai";
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
 
 export default class TextLoader {
     private strategy: DataObtainingStrategy
@@ -17,7 +19,13 @@ export default class TextLoader {
     }
 
 	public async LoadText(question = "", data = "") {
-		const vectorStore = await this.strategy.obtainVectorStore(data)
+		const docs = await this.strategy.obtainDocument(data)
+
+		// const vectorStore = await FaissStore.from
+		const vectorStore = await MemoryVectorStore.fromDocuments(
+			docs,
+			new GoogleVertexAIEmbeddings()
+		);
 
 		const searchResponse = await vectorStore.similaritySearch(question, 1);
 		const textRes = searchResponse

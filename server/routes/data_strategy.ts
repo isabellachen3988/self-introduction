@@ -1,35 +1,26 @@
-import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { Document } from "langchain/document";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { DocxLoader } from "langchain/document_loaders/fs/docx";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
-import { GoogleVertexAIEmbeddings } from "@langchain/community/embeddings/googlevertexai";
 
 
 export interface DataObtainingStrategy {
-    obtainVectorStore(data: string): Promise<MemoryVectorStore>;
+    obtainDocument(data: string): Promise<Document<Record<string, any>>[]>;
 }
 
 export class WebDataObtainingStrategy implements DataObtainingStrategy {
-    public async obtainVectorStore(webPage = ""): Promise<MemoryVectorStore> {
+    public async obtainDocument(webPage = ""): Promise<Document<Record<string, any>>[]> {
         const loader = new CheerioWebBaseLoader(
             webPage
         )
 
-        const docs = await loader.load()
-
-        // const vectorStore = await FaissStore.from
-        const vectorStore = await MemoryVectorStore.fromDocuments(
-            docs,
-            new GoogleVertexAIEmbeddings()
-        );
-
-        return vectorStore
+        return await loader.load()
     }
 }
 
 export class FileDataObtainingStrategy implements DataObtainingStrategy {
-    public async obtainVectorStore(filePath = ""): Promise<MemoryVectorStore> {
+    public async obtainDocument(filePath = ""): Promise<Document<Record<string, any>>[]> {
         const fileExtension = filePath.split(".").pop();
         let loader;
     
@@ -45,13 +36,6 @@ export class FileDataObtainingStrategy implements DataObtainingStrategy {
             throw new Error ("unsupported file type");
         }
     
-        const docs = await loader.load();
-    
-        // const vectorStore = await FaissStore.from
-        const vectorStore = await MemoryVectorStore.fromDocuments(
-            docs,
-            new GoogleVertexAIEmbeddings()
-        );
-        return vectorStore
+        return await loader.load();
     }
 }
