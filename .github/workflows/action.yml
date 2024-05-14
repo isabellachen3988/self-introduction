@@ -15,15 +15,11 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
-
-      - name: Change directory
-        run: cd server
-
-      - name: View Contents
-        run: ls
       
       - name: Install Dependencies
+        working-directory: ./server
         run: npm install
       
       - name: Run All Node.js Tests
+      working-directory: ./server
         run: npm run test
