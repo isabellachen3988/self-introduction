@@ -17,6 +17,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Change directory
+        run: cd server
+
+      - name: View Contents
         run: ls
       
       - name: Install Dependencies
