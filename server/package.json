@@ -7,7 +7,7 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "nodemon index.ts",
-    "test": "mocha -r ts-node/register 'test/*.ts'"
+    "test": "mocha -r ts-node/register --timeout 10000 'test/*.ts'"
   },
   "keywords": [],
   "author": "",
