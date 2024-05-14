@@ -1,24 +1,23 @@
 name: "Continuous Integration Workflow"
 on:
-	pull_request:
-		branches:
-			- main
-	push:
-		branches:
-			- main
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
 
 jobs:
-	test:
-		name: Server Tests
-		runs-on: ubuntu-latest
-		steps:
-			- name: Checkout
-			  id: checkout
-			  uses: actions/checkout@v4
-			
-			- name: Install Dependencies
-			  run: npm install
-			
-			- name: Run All Node.js Tests
-        	  run: npm run test
-			
+  test:
+    name: Server Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+      
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Run All Node.js Tests
+        run: npm run test
