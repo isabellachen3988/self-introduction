@@ -20,3 +20,4 @@ follow the read me
 - [ ] Parse and store webpage vectorstores into a database
 - [ ] Integrate Docker and Kubernetes
 - [ ] Clean up frontend to just show chat
+- [ ] More Tests
