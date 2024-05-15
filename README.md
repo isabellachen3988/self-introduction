@@ -1,6 +1,4 @@
-# PERSONAL CHATBOT
-
-![alt text](image.png)
+# CHATBOT for Artist Site
 
 ## Getting up and running
 
@@ -16,10 +14,9 @@ cd web
 follow the read me
 ```
 
-## Project Code
+## TODO
 
-[github url](https://github.com/gary-george/personal_chatbot)
-
-## Article
-
-[medium url](https://garygeorge84.medium.com/build-a-personal-ai-chatbot-with-node-langchain-typescript-react-7a71c4648ea4)
+- [x] Add Continuous Integration
+- [ ] Parse and store webpage vectorstores into a database
+- [ ] Integrate Docker and Kubernetes
+- [ ] Clean up frontend to just show chat
