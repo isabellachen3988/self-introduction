@@ -3,6 +3,7 @@ import { TextLoader } from "langchain/document_loaders/fs/text";
 import { DocxLoader } from "langchain/document_loaders/fs/docx";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
+import { PuppeteerWebBaseLoader } from "langchain/document_loaders/web/puppeteer";
 
 
 export interface DataObtainingStrategy {
@@ -11,9 +12,12 @@ export interface DataObtainingStrategy {
 
 export class WebDataObtainingStrategy implements DataObtainingStrategy {
     public async obtainDocument(webPage = ""): Promise<Document<Record<string, any>>[]> {
-        const loader = new CheerioWebBaseLoader(
-            webPage
-        )
+        const loader = new CheerioWebBaseLoader(webPage, 
+            {
+                selector: "div",
+            }
+        );
+        // const loader = new PuppeteerWebBaseLoader(webPage);
 
         return await loader.load()
     }

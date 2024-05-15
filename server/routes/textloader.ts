@@ -20,7 +20,7 @@ export default class TextLoader {
 
 	public async LoadText(question = "", data = "") {
 		const docs = await this.strategy.obtainDocument(data)
-
+		console.log(docs)
 		// const vectorStore = await FaissStore.from
 		const vectorStore = await MemoryVectorStore.fromDocuments(
 			docs,

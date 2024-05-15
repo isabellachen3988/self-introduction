@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import TextLoader from "./textloader";
-import { FileDataObtainingStrategy } from "./data_strategy";
+import { FileDataObtainingStrategy, WebDataObtainingStrategy } from "./data_strategy";
 
 export const inMemoryChat = async (req: Request, res: Response) => {
 	const question = req.query.question as string;
-	const filePath = "files/romeo&juliet.docx";
-
-	const textloader = new TextLoader(new FileDataObtainingStrategy());
+	const filePath = "files/context.docx";
+	const webPage = "https://keiishima3.webnode.page/";
+	const textloader = new TextLoader(new WebDataObtainingStrategy());
 	let result = "";
 	try {
-		result = await textloader.LoadText(question, filePath)
+		result = await textloader.LoadText(question, webPage)
 	} catch(error) {
 		result = error as string;
 		console.log(error)
