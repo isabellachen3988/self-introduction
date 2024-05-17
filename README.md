@@ -23,10 +23,10 @@ follow the read me
 - [ ] Update readme and update kubernetes to use files on the cloud
 - [ ] Parse and store webpage vectorstores into a database
 - [ ] Clean up frontend to just show chat
+- [ ] Deploy with Kubernetes
 
 
 ## Backlog
 
 - [ ] Kubernetes for Backend
 - [ ] More Tests
-- [ ] Deploy with Kubernetes
