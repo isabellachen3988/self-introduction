@@ -17,7 +17,10 @@ follow the read me
 ## TODO
 
 - [x] Add Continuous Integration
+- [x] Integrate Docker
+- [x] Integrate Kubernetes
+- [ ] Kubernetes for Production
+- [ ] Kubernetes for Backend
 - [ ] Parse and store webpage vectorstores into a database
-- [ ] Integrate Docker and Kubernetes
 - [ ] Clean up frontend to just show chat
 - [ ] More Tests
