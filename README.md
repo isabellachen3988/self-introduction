@@ -19,8 +19,13 @@ follow the read me
 - [x] Add Continuous Integration
 - [x] Integrate Docker
 - [x] Integrate Kubernetes
-- [ ] Kubernetes for Production
-- [ ] Kubernetes for Backend
+- [x] Kubernetes for Production
+- [ ] Update readme and update kubernetes to use files on the cloud
 - [ ] Parse and store webpage vectorstores into a database
 - [ ] Clean up frontend to just show chat
+
+
+## Backlog
+
+- [ ] Kubernetes for Backend
 - [ ] More Tests

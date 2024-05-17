@@ -26,17 +26,41 @@ Ensure you have started up the server.
 # Docker and Kubernetes
 https://mattermost.com/blog/how-to-deploy-a-react-app-to-kubernetes-using-docker/
 
-## Run Docker
+## Start Minikube
+```
+minikube start
+```
+
+If Unable to resolve the current Docker CLI context "default": context "default"
+```
+docker context use default
+```
+
+## Run Docker Development
 
 ```
+// if not built yet
+docker build -t artist-info . 
 docker run -it -p 4000:3000 artist-info
 ```
 
-## Run Kubernetes
+## Run Docker Production
+https://mherman.org/blog/dockerizing-a-react-app/
+
+```
+docker build -f Dockerfile.prod -t artist-info:prod .
+docker run -it --rm -p 1337:80 artist-info:prod
+```
+
+## Run Kubernetes Development
  
 ```
-kubectl apply -f deployment.yaml
+kubectl apply -f deployment-dev.yaml
 ```
 - `:latest` means that we usually have `imagePullPolicy: Always` set, meaning that image is always pulled before run
 - usually this is not ideal, better to push updates with versioning (ie. v1.2.7)
 
+## Run Kubernetes Production
+```
+kubectl apply -f deployment-prod.yaml
+```
