@@ -39,17 +39,18 @@ docker context use default
 ## Run Docker Development
 
 ```
-// if not built yet
-docker build -t artist-info . 
-docker run -it -p 4000:3000 artist-info
+docker build -f Dockerfile isabellachen3988/artist-info .
+docker push isabellachen3988/artist-info:latest
+docker run -it -p 4000:3000 isabellachen3988/artist-info
 ```
 
 ## Run Docker Production
 https://mherman.org/blog/dockerizing-a-react-app/
 
 ```
-docker build -f Dockerfile.prod -t artist-info:prod .
-docker run -it --rm -p 1337:80 artist-info:prod
+docker build -f Dockerfile.prod -t isabellachen3988/artist-info-prod .
+docker push isabellachen3988/artist-info-prod:latest
+docker run -it --rm -p 1337:80 isabellachen3988/artist-info-prod
 ```
 
 ## Run Kubernetes Development

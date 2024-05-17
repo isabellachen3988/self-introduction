@@ -20,7 +20,7 @@ follow the read me
 - [x] Integrate Docker
 - [x] Integrate Kubernetes
 - [x] Kubernetes for Production
-- [ ] Update readme and update kubernetes to use files on the cloud
+- [x] Update readme and update kubernetes to use files on the cloud
 - [ ] Parse and store webpage vectorstores into a database
 - [ ] Clean up frontend to just show chat
 - [ ] Deploy with Kubernetes
