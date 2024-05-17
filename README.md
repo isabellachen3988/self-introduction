@@ -29,3 +29,4 @@ follow the read me
 
 - [ ] Kubernetes for Backend
 - [ ] More Tests
+- [ ] Deploy with Kubernetes
